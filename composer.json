@@ -1,0 +1,12 @@
+{
+    "name": "cloudwu/shopping-cart",
+    "authors": [
+        {
+            "name": "cloud-wu",
+            "email": "cloud77920@gmail.com"
+        }
+    ],
+    "require": {
+    	"phpunit/phpunit": "5.5.*"
+    }
+}
