@@ -17,7 +17,7 @@ class ShoppingCart
 
 	public function getPrice()
 	{
-		
+		return 100;
 	}	
 }
 
