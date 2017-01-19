@@ -18,17 +18,43 @@ class ShoppingCart
 	public function getPrice()
 	{
 		$price = 0;
-		if(count($this->book_list) == 1) {
-			$price = $this->book_list[0]['price'];
-		} else {
+
+		do {
+			$count = 0;
+			$discount_price = 0;
+
 			foreach ($this->book_list as $key => $book) {
-				$price += $book['price'];
+				if ($book['count'] >= 1) {
+					$count++;
+					$this->book_list[$key]['count'] -= 1;
+					$discount_price += $book['price'];
+				}
 			}
 
-			$price *= 0.95;
-		}
+			$discount_price *= $this->getDiscount($count);
+			$price += $discount_price;
+
+		} while ($count > 0);
 
 		return (int)$price;
-	}	
+	}
+
+	public function getDiscount($count)
+	{
+		$discount = 1;
+		switch ($count) {
+			case '1':
+				$discount = 1;
+				break;
+			case '2':
+				$discount = 0.95;
+				break;
+			case '3':
+				$discount = 0.9;
+				break;
+		}
+
+		return $discount;
+	}
 }
 
