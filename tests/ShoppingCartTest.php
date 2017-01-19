@@ -15,7 +15,7 @@ class ShoppingCartTest extends TestCase
 		$target = 100;
 
 		$ShoppingCart = new ShoppingCart([
-			['name'=>'哈利波特1', 'price'=>'100', 'count'=>'1']
+			new Book('哈利波特1', 100, 1),
 		]);
 		$result = $ShoppingCart->getPrice();
 
@@ -27,8 +27,8 @@ class ShoppingCartTest extends TestCase
 		$target = 190;
 
 		$ShoppingCart = new ShoppingCart([
-			['name'=>'哈利波特1', 'price'=>'100', 'count'=>'1'],
-			['name'=>'哈利波特2', 'price'=>'100', 'count'=>'1']
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
 		]);
 		$result = $ShoppingCart->getPrice();
 
@@ -40,9 +40,9 @@ class ShoppingCartTest extends TestCase
 		$target = 270;
 
 		$ShoppingCart = new ShoppingCart([
-			['name'=>'哈利波特1', 'price'=>'100', 'count'=>'1'],
-			['name'=>'哈利波特2', 'price'=>'100', 'count'=>'1'],
-			['name'=>'哈利波特3', 'price'=>'100', 'count'=>'1']
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
+			new Book('哈利波特3', 100, 1),
 		]);
 		$result = $ShoppingCart->getPrice();
 

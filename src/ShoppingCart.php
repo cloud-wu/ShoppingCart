@@ -24,10 +24,10 @@ class ShoppingCart
 			$discount_price = 0;
 
 			foreach ($this->book_list as $key => $book) {
-				if ($book['count'] >= 1) {
+				if ($book->count >= 1) {
 					$count++;
-					$this->book_list[$key]['count'] -= 1;
-					$discount_price += $book['price'];
+					$book->count -= 1;
+					$discount_price += $book->price;
 				}
 			}
 
@@ -55,6 +55,23 @@ class ShoppingCart
 		}
 
 		return $discount;
+	}
+}
+
+/**
+* 
+*/
+class Book
+{
+	public $name;
+	public $price;
+	public $count;
+
+	function __construct($name, $price, $count)
+	{
+		$this->name = $name;
+		$this->price = $price;
+		$this->count = $count;
 	}
 }
 
