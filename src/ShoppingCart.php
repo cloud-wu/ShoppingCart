@@ -3,9 +3,6 @@
 namespace ShoppingCart;
 
 
-/**
-* 
-*/
 class ShoppingCart
 {
 	protected $book_list;
@@ -15,6 +12,7 @@ class ShoppingCart
 		$this->book_list = $book_list;
 	}
 
+	// 獲得購物車商品金額
 	public function getPrice()
 	{
 		$price = 0;
@@ -39,7 +37,8 @@ class ShoppingCart
 		return (int)$price;
 	}
 
-	public function getDiscount($count)
+	// 獲得書籍優惠
+	protected function getDiscount($count)
 	{
 		$discount = 1;
 		switch ($count) {
@@ -55,15 +54,17 @@ class ShoppingCart
 			case '4':
 				$discount = 0.8;
 				break;
+			case '5':
+				$discount = 0.75;
+				break;
 		}
 
 		return $discount;
 	}
 }
 
-/**
-* 
-*/
+
+
 class Book
 {
 	public $name;
