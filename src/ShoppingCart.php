@@ -17,7 +17,18 @@ class ShoppingCart
 
 	public function getPrice()
 	{
-		return 100;
+		$price = 0;
+		if(count($this->book_list) == 1) {
+			$price = $this->book_list[0]['price'];
+		} else {
+			foreach ($this->book_list as $key => $book) {
+				$price += $book['price'];
+			}
+
+			$price *= 0.95;
+		}
+
+		return (int)$price;
 	}	
 }
 
