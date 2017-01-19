@@ -79,5 +79,19 @@ class ShoppingCartTest extends TestCase
 
 		$this->assertEquals($target, $result);
 	}
+
+	public function test_一二集各買了一本，第三集買了兩本，價格應為370()
+	{
+		$target = 370;
+
+		$ShoppingCart = new ShoppingCart([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
+			new Book('哈利波特3', 100, 2),
+		]);
+		$result = $ShoppingCart->getPrice();
+
+		$this->assertEquals($target, $result);
+	}
 }
 
