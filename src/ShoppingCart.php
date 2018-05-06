@@ -1,81 +1,80 @@
 <?php
 
-namespace ShoppingCart;
+namespace App;
 
+use App\Book;
 
 class ShoppingCart
 {
-	protected $book_list;
+	protected $books;
 
-	function __construct($book_list)
+	function __construct()
 	{
-		$this->book_list = $book_list;
+		$this->books = [];
 	}
 
-	// 獲得購物車商品金額
+	/**
+	 * add book in shopping cart
+	 * @param  Book   $book    book
+	 */
+	public function add(Book $book)
+	{
+		$this->books[] = $book;
+	}
+
+	/**
+	 * Get the price of books
+	 * @param  int   $count    the count of books
+	 * @return double          price
+	 */
 	public function getPrice()
 	{
 		$price = 0;
 
 		do {
 			$count = 0;
-			$discount_price = 0;
+			$BookSetPrice = 0;
 
-			foreach ($this->book_list as $key => $book) {
+			foreach ($this->books as $book) {
 				if ($book->count >= 1) {
 					$count++;
 					$book->count -= 1;
-					$discount_price += $book->price;
+					$BookSetPrice += $book->price;
 				}
 			}
 
-			$discount_price *= $this->getDiscount($count);
-			$price += $discount_price;
+			$price += $BookSetPrice * $this->getDiscountPercent($count);
 
 		} while ($count > 0);
 
-		return (int)$price;
+		return $price;
 	}
 
-	// 獲得書籍優惠
-	protected function getDiscount($count)
+	/**
+	 * Get the discount percent of book's set
+	 * @param  int   $count    the count of books
+	 * @return double          discount percent
+	 */
+	protected function getDiscountPercent($count)
 	{
-		$discount = 1;
 		switch ($count) {
-			case '1':
-				$discount = 1;
-				break;
-			case '2':
+			case 2:
 				$discount = 0.95;
 				break;
-			case '3':
+			case 3:
 				$discount = 0.9;
 				break;
-			case '4':
+			case 4:
 				$discount = 0.8;
 				break;
-			case '5':
+			case 5:
 				$discount = 0.75;
+				break;
+			default:
+				$discount = 1;
 				break;
 		}
 
 		return $discount;
 	}
 }
-
-
-
-class Book
-{
-	public $name;
-	public $price;
-	public $count;
-
-	function __construct($name, $price, $count)
-	{
-		$this->name = $name;
-		$this->price = $price;
-		$this->count = $count;
-	}
-}
-
