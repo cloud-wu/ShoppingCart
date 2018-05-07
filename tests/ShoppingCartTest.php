@@ -12,8 +12,9 @@ class ShoppingCartTest extends TestCase
 		$target = 100;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1)
+		]);
 
 		$this->assertEquals($target, $result);
 	}
@@ -23,9 +24,10 @@ class ShoppingCartTest extends TestCase
 		$target = 190;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特2', 100, 1));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1)
+		]);
 
 		$this->assertEquals($target, $result);
 	}
@@ -35,10 +37,11 @@ class ShoppingCartTest extends TestCase
 		$target = 270;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特2', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特3', 100, 1));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
+			new Book('哈利波特3', 100, 1)
+		]);
 
 		$this->assertEquals($target, $result);
 	}
@@ -48,11 +51,12 @@ class ShoppingCartTest extends TestCase
 		$target = 320;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特2', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特3', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特4', 100, 1));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
+			new Book('哈利波特3', 100, 1),
+			new Book('哈利波特4', 100, 1)
+		]);
 
 		$this->assertEquals($target, $result);
 	}
@@ -62,12 +66,13 @@ class ShoppingCartTest extends TestCase
 		$target = 375;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特2', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特3', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特4', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特5', 100, 1));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
+			new Book('哈利波特3', 100, 1),
+			new Book('哈利波特4', 100, 1),
+			new Book('哈利波特5', 100, 1),
+		]);
 
 		$this->assertEquals($target, $result);
 	}
@@ -77,10 +82,11 @@ class ShoppingCartTest extends TestCase
 		$target = 370;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特2', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特3', 100, 2));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 1),
+			new Book('哈利波特3', 100, 2)
+		]);
 
 		$this->assertEquals($target, $result);
 	}
@@ -90,13 +96,13 @@ class ShoppingCartTest extends TestCase
 		$target = 460;
 
 		$ShoppingCart = new ShoppingCart();
-		$ShoppingCart->add(new Book('哈利波特1', 100, 1));
-		$ShoppingCart->add(new Book('哈利波特2', 100, 2));
-		$ShoppingCart->add(new Book('哈利波特3', 100, 2));
-		$result = $ShoppingCart->getPrice();
+		$result = $ShoppingCart->getPrice([
+			new Book('哈利波特1', 100, 1),
+			new Book('哈利波特2', 100, 2),
+			new Book('哈利波特3', 100, 2),
+		]);
 
 		$this->assertEquals($target, $result);
 	}
-	
 }
 

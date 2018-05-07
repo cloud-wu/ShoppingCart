@@ -6,28 +6,12 @@ use App\Book;
 
 class ShoppingCart
 {
-	protected $books;
-
-	function __construct()
-	{
-		$this->books = [];
-	}
-
-	/**
-	 * add book in shopping cart
-	 * @param  Book   $book    book
-	 */
-	public function add(Book $book)
-	{
-		$this->books[] = $book;
-	}
-
 	/**
 	 * Get the price of books
-	 * @param  int   $count    the count of books
+	 * @param  array   $books  the books in shopping cart
 	 * @return double          price
 	 */
-	public function getPrice()
+	public function getPrice($books)
 	{
 		$price = 0;
 
@@ -35,10 +19,10 @@ class ShoppingCart
 			$count = 0;
 			$BookSetPrice = 0;
 
-			foreach ($this->books as $book) {
+			foreach ($books as $book) {
 				if ($book->count >= 1) {
 					$count++;
-					$book->count -= 1;
+					$book->count--;
 					$BookSetPrice += $book->price;
 				}
 			}
