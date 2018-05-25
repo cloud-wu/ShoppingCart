@@ -13,25 +13,22 @@ class ShoppingCart
 	 */
 	public function getPrice($books)
 	{
-		$price = 0;
+		$count = 0;
+		$BookSetPrice = 0;
 
-		do {
-			$count = 0;
-			$BookSetPrice = 0;
-
-			foreach ($books as $book) {
-				if ($book->count >= 1) {
-					$count++;
-					$book->count--;
-					$BookSetPrice += $book->price;
-				}
+		foreach ($books as $book) {
+			if (! $book->isEmpty()) {
+				$count++;
+				$book->minus();
+				$BookSetPrice += $book->getPrice();
 			}
+		}
 
-			$price += $BookSetPrice * $this->getDiscountPercent($count);
+		if ($count === 0) {
+			return 0;
+		}
 
-		} while ($count > 0);
-
-		return $price;
+		return $BookSetPrice * $this->getDiscountPercent($count) + $this->getPrice($books);
 	}
 
 	/**
